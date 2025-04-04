@@ -2,33 +2,36 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import Card from './components/Basic/Card'
+import TextBlock from './components/Basic/TextBlock'
+
+import dashboardConfig from './dashboardConfig.json'
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const componentMap = {
+    Card: Card,
+    TextBlock: TextBlock
+  }
+
+  const dashboardRenderer = (components) => {
+    return (
+      <div className='grid grid-cols-2 gap-4'>
+      {
+        components.map((componentData) => {
+          const Component = componentMap[componentData.type]
+          return <Component {...componentData?.payload} key={componentData?.id}/>
+        })
+      }
+      </div>
+    )
+  }
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    {dashboardRenderer(dashboardConfig?.components)}
     </>
+      
   )
 }
 

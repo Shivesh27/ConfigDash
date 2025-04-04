@@ -1,0 +1,35 @@
+{
+    "components": [
+        {
+            "id": "card_1",
+            "type": "Card",
+            "payload": {
+                "title": "Total Users",
+                "value": "50,000"
+            }
+        },
+        {
+            "id": "text_1",
+            "type": "TextBlock",
+            "payload": {
+                "text": "Hello this is being rendered from config"
+            }
+        },
+        {
+            "id": "card_3",
+            "type": "Card",
+            "payload": {
+                "title": "Total Users",
+                "value": "50,000"
+            }
+        },
+        {
+            "id": "card_2",
+            "type": "Card",
+            "payload": {
+                "title": "Total Users",
+                "value": "50,000"
+            }
+        }
+    ]
+}
