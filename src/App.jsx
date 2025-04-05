@@ -1,24 +1,31 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import Card from './components/Basic/Card'
 import TextBlock from './components/Basic/TextBlock'
 
-import dashboardConfig from './dashboardConfig.json'
+import Table from './components/Basic/Table'
+import Button from './components/Basic/Button'
+import PieChartComponent from './components/Charts/PieChartComponent'
+import SideBar from './components/SideBar/SideBar'
+import { useDashboardStore } from './store/dashboardStore'
+import SaveButton from './components/Controls/SaveButton'
 
 function App() {
 
+  const dashboardConfig = useDashboardStore((state) => state.config)
+
   const componentMap = {
     Card: Card,
-    TextBlock: TextBlock
+    TextBlock: TextBlock,
+    Table :Table,
+    Button: Button,
+    PieChart:PieChartComponent
   }
 
   const dashboardRenderer = (components) => {
     return (
-      <div className='grid grid-cols-2 gap-4'>
+      <div className=''>
       {
-        components.map((componentData) => {
+        components?.map((componentData) => {
           const Component = componentMap[componentData.type]
           return <Component {...componentData?.payload} key={componentData?.id}/>
         })
@@ -28,9 +35,16 @@ function App() {
   }
 
   return (
-    <>
-    {dashboardRenderer(dashboardConfig?.components)}
-    </>
+    <div className='flex h-screen bg-gray-100'>
+      <div>
+        <SideBar/>
+      </div>
+      <div className='flex-1 overflow-y-auto p-4'>
+        {dashboardRenderer(dashboardConfig)}
+      </div>
+      <SaveButton/>
+    
+    </div>
       
   )
 }

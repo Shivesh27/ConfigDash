@@ -16,19 +16,36 @@
             }
         },
         {
-            "id": "card_3",
-            "type": "Card",
+            "id": "table",
+            "type": "Table",
             "payload": {
-                "title": "Total Users",
-                "value": "50,000"
+                "headers": ["Name", "Something", "second"],
+                "data": [
+                    ["Hello", "somethinh", "dskhj"],
+                    ["Hello", "somethinh", "dskhj"],
+                    ["Hello", "somethinh", "dskhj"]
+                ]
             }
         },
         {
-            "id": "card_2",
-            "type": "Card",
+            "type": "Button",
+            "payload":{
+                "label": "Click Me!!",
+                "action": "alert",
+                "message": "Button Clicked!!"
+            }
+        },
+        {
+            "id":"card_pie",
+            "type": "PieChart",
             "payload": {
-                "title": "Total Users",
-                "value": "50,000"
+                "title": "PieChart",
+                "data": [
+                    { "name": "India", "value": 400 },
+                    { "name": "USA", "value": 300 },
+                    { "name": "UK", "value": 300 },
+                    { "name": "Germany", "value": 200 }
+                ]
             }
         }
     ]
